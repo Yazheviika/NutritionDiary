@@ -13,16 +13,21 @@ namespace NutritionDiary.Infrastructure
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Product>().OwnsOne(p => p.NutritionFacts);
+            modelBuilder.Entity<FoodItem>().OwnsOne(p => p.NutritionFacts);
             modelBuilder.Entity<DiaryEntry>().OwnsOne(d => d.NutritionTotalsSnapshot);
+            
             modelBuilder.Entity<DiaryEntry>()
                 .HasOne(d => d.FoodItem)
                 .WithMany()
                 .OnDelete(DeleteBehavior.SetNull);
 
+            modelBuilder.Entity<FoodItem>()
+                .HasDiscriminator<string>("ItemType")
+                .HasValue<Product>("Product");
+
             modelBuilder.Entity<DiaryEntry>()
-    .Property(d => d.Meal)
-    .HasConversion<string>();
+                .Property(d => d.Meal)
+                .HasConversion<string>();
 
             modelBuilder.Entity<Product>()
                 .Property(p => p.NutriscoreGrade)
@@ -31,10 +36,6 @@ namespace NutritionDiary.Infrastructure
             modelBuilder.Entity<Product>()
                 .Property(p => p.Source)
                 .HasConversion<string>();
-
-            modelBuilder.Entity<FoodItem>()
-                .HasDiscriminator<string>("ItemType")
-                .HasValue<Product>("Product");
         }
     }
 }
