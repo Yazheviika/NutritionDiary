@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/NutritionDiary.Api/NutritionDiary.Api.csproj" />
+    <Project Path="src/NutritionDiary.Application/NutritionDiary.Application.csproj" />
+    <Project Path="src/NutritionDiary.Domain/NutritionDiary.Domain.csproj" />
+    <Project Path="src/NutritionDiary.Infrastructure/NutritionDiary.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/NutritionDiary.Api.IntegrationTests/NutritionDiary.Api.IntegrationTests.csproj" />
+    <Project Path="tests/NutritionDiary.Application.Tests/NutritionDiary.Application.Tests.csproj" />
+  </Folder>
+</Solution>

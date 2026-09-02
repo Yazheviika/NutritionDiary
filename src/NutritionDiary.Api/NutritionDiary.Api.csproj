@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>ea6abbbc-b392-479c-84d1-64a7055ed81c</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.11" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NutritionDiary.Application\NutritionDiary.Application.csproj" />
+    <ProjectReference Include="..\NutritionDiary.Infrastructure\NutritionDiary.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

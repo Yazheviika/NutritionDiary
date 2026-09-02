@@ -1,0 +1,40 @@
+﻿using Microsoft.EntityFrameworkCore;
+using NutritionDiary.Domain.Entities;
+
+namespace NutritionDiary.Infrastructure
+{
+    public class NutritionDbContext : DbContext
+    {
+        public NutritionDbContext(DbContextOptions<NutritionDbContext> options) : base(options) { }
+
+        public DbSet<Product> Products => Set<Product>();
+        public DbSet<DiaryEntry> DiaryEntries => Set<DiaryEntry>();
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Product>().OwnsOne(p => p.NutritionFacts);
+            modelBuilder.Entity<DiaryEntry>().OwnsOne(d => d.NutritionTotalsSnapshot);
+            modelBuilder.Entity<DiaryEntry>()
+                .HasOne(d => d.FoodItem)
+                .WithMany()
+                .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<DiaryEntry>()
+    .Property(d => d.Meal)
+    .HasConversion<string>();
+
+            modelBuilder.Entity<Product>()
+                .Property(p => p.NutriscoreGrade)
+                .HasConversion<string>();
+
+            modelBuilder.Entity<Product>()
+                .Property(p => p.Source)
+                .HasConversion<string>();
+
+            modelBuilder.Entity<FoodItem>()
+                .HasDiscriminator<string>("ItemType")
+                .HasValue<Product>("Product");
+        }
+    }
+}
