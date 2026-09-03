@@ -77,7 +77,7 @@ namespace NutritionDiary.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FoodItem");
+                    b.ToTable("FoodItems", (string)null);
 
                     b.HasDiscriminator<string>("ItemType").HasValue("FoodItem");
 
@@ -226,7 +226,7 @@ namespace NutritionDiary.Infrastructure.Migrations
 
                             b1.HasKey("FoodItemId");
 
-                            b1.ToTable("FoodItem");
+                            b1.ToTable("FoodItems");
 
                             b1.WithOwner()
                                 .HasForeignKey("FoodItemId");

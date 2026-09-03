@@ -15,7 +15,9 @@ namespace NutritionDiary.Infrastructure
         {
             modelBuilder.Entity<FoodItem>().OwnsOne(p => p.NutritionFacts);
             modelBuilder.Entity<DiaryEntry>().OwnsOne(d => d.NutritionTotalsSnapshot);
-            
+
+            modelBuilder.Entity<FoodItem>().ToTable("FoodItems");
+
             modelBuilder.Entity<DiaryEntry>()
                 .HasOne(d => d.FoodItem)
                 .WithMany()
