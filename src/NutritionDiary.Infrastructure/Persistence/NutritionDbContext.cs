@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NutritionDiary.Domain.Entities;
 
-namespace NutritionDiary.Infrastructure
+namespace NutritionDiary.Infrastructure.Persistence
 {
     public class NutritionDbContext : DbContext
     {
@@ -9,6 +9,7 @@ namespace NutritionDiary.Infrastructure
 
         public DbSet<Product> Products => Set<Product>();
         public DbSet<DiaryEntry> DiaryEntries => Set<DiaryEntry>();
+        public DbSet<FoodItem> FoodItems => Set<FoodItem>();
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

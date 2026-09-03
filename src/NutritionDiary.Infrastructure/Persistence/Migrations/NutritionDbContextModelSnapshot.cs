@@ -2,21 +2,18 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using NutritionDiary.Infrastructure;
+using NutritionDiary.Infrastructure.Persistence;
 
 #nullable disable
 
 namespace NutritionDiary.Infrastructure.Migrations
 {
     [DbContext(typeof(NutritionDbContext))]
-    [Migration("20260903092459_InitialCreate")]
-    partial class InitialCreate
+    partial class NutritionDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -58,7 +55,7 @@ namespace NutritionDiary.Infrastructure.Migrations
 
                     b.HasIndex("FoodItemId");
 
-                    b.ToTable("DiaryEntries");
+                    b.ToTable("DiaryEntries", (string)null);
                 });
 
             modelBuilder.Entity("NutritionDiary.Domain.Entities.FoodItem", b =>
@@ -166,7 +163,7 @@ namespace NutritionDiary.Infrastructure.Migrations
 
                             b1.HasKey("DiaryEntryId");
 
-                            b1.ToTable("DiaryEntries");
+                            b1.ToTable("DiaryEntries", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("DiaryEntryId");
@@ -229,7 +226,7 @@ namespace NutritionDiary.Infrastructure.Migrations
 
                             b1.HasKey("FoodItemId");
 
-                            b1.ToTable("FoodItems");
+                            b1.ToTable("FoodItems", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("FoodItemId");
