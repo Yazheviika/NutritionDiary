@@ -1,6 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NutritionDiary.Application.Interfaces;
+using NutritionDiary.Infrastructure.Persistence;
+using NutritionDiary.Infrastructure.Persistence.Repositories;
 
 namespace NutritionDiary.Infrastructure
 {
@@ -10,6 +13,10 @@ namespace NutritionDiary.Infrastructure
         {
             services.AddDbContext<NutritionDbContext>(options =>
                 options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<IFoodItemRepository, FoodItemRepository>();
+            services.AddScoped<IDiaryEntryRepository, DiaryEntryRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
             return services;
         }
     }
