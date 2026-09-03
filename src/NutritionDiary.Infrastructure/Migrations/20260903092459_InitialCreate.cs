@@ -13,7 +13,7 @@ namespace NutritionDiary.Infrastructure.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "FoodItem",
+                name: "FoodItems",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -42,7 +42,7 @@ namespace NutritionDiary.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FoodItem", x => x.Id);
+                    table.PrimaryKey("PK_FoodItems", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -76,9 +76,9 @@ namespace NutritionDiary.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_DiaryEntries", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_DiaryEntries_FoodItem_FoodItemId",
+                        name: "FK_DiaryEntries_FoodItems_FoodItemId",
                         column: x => x.FoodItemId,
-                        principalTable: "FoodItem",
+                        principalTable: "FoodItems",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.SetNull);
                 });
@@ -96,7 +96,7 @@ namespace NutritionDiary.Infrastructure.Migrations
                 name: "DiaryEntries");
 
             migrationBuilder.DropTable(
-                name: "FoodItem");
+                name: "FoodItems");
         }
     }
 }

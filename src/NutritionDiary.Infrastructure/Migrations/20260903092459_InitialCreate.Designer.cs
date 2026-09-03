@@ -12,7 +12,7 @@ using NutritionDiary.Infrastructure;
 namespace NutritionDiary.Infrastructure.Migrations
 {
     [DbContext(typeof(NutritionDbContext))]
-    [Migration("20260902112627_InitialCreate")]
+    [Migration("20260903092459_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -80,7 +80,7 @@ namespace NutritionDiary.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FoodItem");
+                    b.ToTable("FoodItems", (string)null);
 
                     b.HasDiscriminator<string>("ItemType").HasValue("FoodItem");
 
@@ -229,7 +229,7 @@ namespace NutritionDiary.Infrastructure.Migrations
 
                             b1.HasKey("FoodItemId");
 
-                            b1.ToTable("FoodItem");
+                            b1.ToTable("FoodItems");
 
                             b1.WithOwner()
                                 .HasForeignKey("FoodItemId");
