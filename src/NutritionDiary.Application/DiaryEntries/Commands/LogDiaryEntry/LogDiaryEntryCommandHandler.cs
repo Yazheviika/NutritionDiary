@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using NutritionDiary.Application.Common;
+using NutritionDiary.Application.Common.Mapping;
 using NutritionDiary.Application.DTOs;
 using NutritionDiary.Application.Interfaces;
 using NutritionDiary.Domain.Entities;
@@ -10,12 +11,14 @@ namespace NutritionDiary.Application.DiaryEntries.Commands.LogDiaryEntry
     {
         private readonly IFoodItemRepository _foodItemRepository;
         private readonly IDiaryEntryRepository _diaryEntryRepository;
+        private readonly DiaryEntryMapper _diaryEntryMapper;
         private readonly IUnitOfWork _unitOfWork;
 
-        public LogDiaryEntryCommandHandler(IFoodItemRepository foodItemRepository, IDiaryEntryRepository diaryEntryRepository, IUnitOfWork unitOfWork)
+        public LogDiaryEntryCommandHandler(IFoodItemRepository foodItemRepository, IDiaryEntryRepository diaryEntryRepository, DiaryEntryMapper diaryEntryMapper, IUnitOfWork unitOfWork)
         {
             _foodItemRepository = foodItemRepository;
             _diaryEntryRepository = diaryEntryRepository;
+            _diaryEntryMapper = diaryEntryMapper;
             _unitOfWork = unitOfWork;
         }
 
@@ -42,15 +45,8 @@ namespace NutritionDiary.Application.DiaryEntries.Commands.LogDiaryEntry
             _diaryEntryRepository.Add(diaryEntry);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-            return Result<DiaryEntryResponse>.Success(new DiaryEntryResponse
-            {
-                Id = diaryEntry.Id,
-                FoodItemName = diaryEntry.FoodItemName,
-                NutritionTotals = diaryEntry.NutritionTotalsSnapshot,
-                QuantityInG = diaryEntry.QuantityInG,
-                Meal = diaryEntry.Meal,
-                Date = diaryEntry.Date
-            });
+            var result = _diaryEntryMapper.ToResponse(diaryEntry);
+            return Result<DiaryEntryResponse>.Success(result);
         }
     }
 }
