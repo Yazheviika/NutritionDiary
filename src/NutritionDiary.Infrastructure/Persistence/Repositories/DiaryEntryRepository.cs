@@ -21,5 +21,10 @@ namespace NutritionDiary.Infrastructure.Persistence.Repositories
         {
             return _context.DiaryEntries.FirstOrDefaultAsync(d => d.Id == id, cancellationToken);
         }
+
+        public Task<List<DiaryEntry>> GetByUserAndDateAsync(string userId, DateOnly date, CancellationToken cancellationToken)
+        {
+            return _context.DiaryEntries.Where(d => d.UserId == userId && d.Date == date).ToListAsync(cancellationToken);
+        }
     }
 }
