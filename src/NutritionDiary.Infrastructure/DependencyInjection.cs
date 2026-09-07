@@ -16,6 +16,10 @@ namespace NutritionDiary.Infrastructure
             services.AddScoped<IFoodItemRepository, FoodItemRepository>();
             services.AddScoped<IDiaryEntryRepository, DiaryEntryRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddHttpClient("UsdaClient", client =>
+            {
+                client.BaseAddress = new Uri(configuration["ExternalApis:Usda:BaseUrl"]!);
+            });
 
             return services;
         }
