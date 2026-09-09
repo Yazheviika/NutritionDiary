@@ -3,7 +3,7 @@ using NutritionDiary.Application.Common.Mapping;
 using NutritionDiary.Application.DTOs;
 using NutritionDiary.Application.Interfaces;
 
-namespace NutritionDiary.Application.DiaryEntries.Queries
+namespace NutritionDiary.Application.DiaryEntries.Queries.GetDiaryEntriesForUser
 {
     public class GetDiaryEntriesForUserQueryHandler : IRequestHandler<GetDiaryEntriesForUserQuery, List<DiaryEntryResponse>>
     {

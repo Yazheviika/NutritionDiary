@@ -10,6 +10,7 @@ namespace NutritionDiary.Application
         {
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
             services.AddSingleton<DiaryEntryMapper>();
+            services.AddSingleton<ProductMapper>();
             return services;
         }
     }
