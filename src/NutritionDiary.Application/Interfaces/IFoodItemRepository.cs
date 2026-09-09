@@ -7,5 +7,6 @@ namespace NutritionDiary.Application.Interfaces
     {
         Task<FoodItem?> GetByIdAsync(int id, CancellationToken cancellationToken);
         Task<Product?> GetBySourceAndExternalIdAsync(Source source, string externalId, CancellationToken cancellationToken);
+        void Add(FoodItem foodItem);
     }
 }

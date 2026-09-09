@@ -2,7 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Http.Json;
 using NutritionDiary.Application;
 using NutritionDiary.Application.DiaryEntries.Commands.LogDiaryEntry;
-using NutritionDiary.Application.DiaryEntries.Queries;
+using NutritionDiary.Application.DiaryEntries.Queries.GetDiaryEntriesForUser;
 using NutritionDiary.Application.DTOs;
 using NutritionDiary.Infrastructure;
 using System.Text.Json.Serialization;

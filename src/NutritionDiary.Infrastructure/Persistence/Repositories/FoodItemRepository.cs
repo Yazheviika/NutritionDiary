@@ -15,5 +15,11 @@ namespace NutritionDiary.Infrastructure.Persistence.Repositories
 
         public Task<Product?> GetBySourceAndExternalIdAsync(Source source, string externalId, CancellationToken cancellationToken)
             => _context.Products.FirstOrDefaultAsync(p => p.Source == source && p.ExternalId == externalId, cancellationToken);
+
+
+        public void Add(FoodItem foodItem)
+        {
+            _context.FoodItems.Add(foodItem);
+        }
     }
 }
