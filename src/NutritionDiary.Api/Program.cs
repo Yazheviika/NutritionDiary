@@ -1,5 +1,6 @@
 using MediatR;
 using Microsoft.AspNetCore.Http.Json;
+using NutritionDiary.Api.Endpoints;
 using NutritionDiary.Application;
 using NutritionDiary.Application.DiaryEntries.Commands.LogDiaryEntry;
 using NutritionDiary.Application.DiaryEntries.Queries.GetDiaryEntriesForUser;
@@ -27,21 +28,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapPost("/api/diaryentries", async (LogDiaryEntryCommand command, IMediator mediator, CancellationToken cancellationToken) =>
-{
-    var result = await mediator.Send(command, cancellationToken);
-
-    return result.IsSuccess
-    ? Results.Ok(result.Value)
-    : Results.BadRequest(result.Error);
-})
-.Produces<DiaryEntryResponse>(StatusCodes.Status200OK)
-.ProducesProblem(StatusCodes.Status400BadRequest);
-
-app.MapGet("/api/diaryentries", async ([AsParameters] GetDiaryEntriesForUserQuery query, IMediator mediator, CancellationToken cancellationToken) =>
-{
-    return Results.Ok(await mediator.Send(query, cancellationToken));
-})
-.Produces<List<DiaryEntryResponse>>(StatusCodes.Status200OK);
+app.MapDiaryEntryEndpoints();
 
 app.Run();
