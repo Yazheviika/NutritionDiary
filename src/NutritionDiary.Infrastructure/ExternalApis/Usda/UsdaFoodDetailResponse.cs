@@ -4,13 +4,18 @@
         int FdcId,
         string Description,
         string? BrandOwner,
-        string? FoodCategory,
+        UsdaFoodCategory? FoodCategory,
         List<UsdaNutrientDetail> FoodNutrients
     );
 
     public record UsdaNutrientDetail(
         double Amount,
         UsdaNutrientInfo Nutrient
+    );
+
+    public record UsdaFoodCategory(
+        int Id, 
+        string Description
     );
 
     public record UsdaNutrientInfo(

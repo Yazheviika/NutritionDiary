@@ -45,7 +45,7 @@ namespace NutritionDiary.Infrastructure.ExternalApis.Usda
             {
                 Name = detail.Description,
                 Brand = detail.BrandOwner,
-                Category = detail.FoodCategory,
+                Category = detail.FoodCategory?.Description,
                 Source = Source.USDA,
                 ExternalId = detail.FdcId.ToString(),
                 NutritionFacts = new NutritionFacts()
