@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NutritionDiary.Application.Interfaces;
+using NutritionDiary.Infrastructure.ExternalApis.Usda;
 using NutritionDiary.Infrastructure.Persistence;
 using NutritionDiary.Infrastructure.Persistence.Repositories;
 
@@ -16,6 +17,7 @@ namespace NutritionDiary.Infrastructure
             services.AddScoped<IFoodItemRepository, FoodItemRepository>();
             services.AddScoped<IDiaryEntryRepository, DiaryEntryRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IFoodDataProvider, UsdaFoodDataProvider>();
             services.AddHttpClient("UsdaClient", client =>
             {
                 client.BaseAddress = new Uri(configuration["ExternalApis:Usda:BaseUrl"]!);
